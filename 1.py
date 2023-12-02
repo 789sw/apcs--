@@ -1,22 +1,15 @@
 #https://zerojudge.tw/ShowProblem?problemid=a005
 
 t = int(input())
-t_list = []
-for i in range(t) : 
-    t_list.append([])
-    input_line = input().split()  #輸入
-    for j in range(4):
-        t_list[i].append(int(input_line[j]))  # 將每個部分轉換為整數
-    d = t_list[i][1]-t_list[i][0]
-    if (t_list[i][0] + d) == t_list[i][1] and (t_list[i][1] + d) == t_list[i][2]:   #判斷是否為公差
-        t_list[i][4].append(t_list[i][3] + d)
+for _ in range(t):
+    index = []
+    for i in range(4):
+        index.extend(map(int, input().split()))
+    if index[3]-index[2] == index[1]-index[0]:
+        index.append(index[3]+(index[3]-index[2]))
     else:
-        r = t_list[i][1] / t_list[i][0]     #為公比
-        t_list[i][4].append(t_list[i][3] * r)
-
-for i in range(t):      #印出結果
-    for j in range(5):
-        print (t_list[i][j],end = " ") 
+        index.append(index[3]*(index[3]/index[2]))
+    print(index, end = " ")
     print("\n")
 #其中end=" ",意思是为末尾end传递一个空字符串，
 # 这样print函数不会在字符串末尾添加一个换行符，
